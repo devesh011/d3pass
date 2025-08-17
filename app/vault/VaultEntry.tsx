@@ -20,14 +20,18 @@ interface VaultEntryProps {
 
 export default function VaultEntry({ entry }: VaultEntryProps) {
   const [showPassword, setShowPassword] = useState(false);
-  const [copyStatus, setCopyStatus] = useState<"idle" | "copied">("idle");
+  const [copyStatus, setCopyStatus] = useState<
+    "idle" | "copied-username" | "copied-password"
+  >("idle");
 
   const copyToClipboard = async (
     text: string,
     type: "username" | "password"
   ) => {
     await navigator.clipboard.writeText(text);
-    setCopyStatus("copied");
+    setCopyStatus(
+      `copied-${type}` as "idle" | "copied-username" | "copied-password"
+    );
     setTimeout(() => setCopyStatus("idle"), 2000);
   };
 
@@ -159,9 +163,11 @@ export default function VaultEntry({ entry }: VaultEntryProps) {
         </Button>
       </div>
 
-      {copyStatus === "copied" && (
+      {copyStatus.startsWith("copied") && (
         <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm">
-          Copied!
+          {copyStatus === "copied-username"
+            ? "Username copied!"
+            : "Password copied!"}
         </div>
       )}
     </Card>

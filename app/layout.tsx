@@ -1,38 +1,38 @@
 import { type Metadata } from "next";
 import { ClerkProvider, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LoadingScreen from "@/components/loadingScreen";
 
 // layout.tsx
-import { Inter, Orbitron, Saira_Stencil_One } from "next/font/google";
+// import { Inter, Orbitron, Saira_Stencil_One } from "next/font/google";
 
-const sairaStencil = Saira_Stencil_One({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-saira",
-});
+// const sairaStencil = Saira_Stencil_One({
+//   subsets: ["latin"],
+//   weight: "400",
+//   variable: "--font-saira",
+// });
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+// const inter = Inter({
+//   subsets: ["latin"],
+//   variable: "--font-inter",
+// });
 
-const orbitron = Orbitron({
-  subsets: ["latin"],
-  variable: "--font-orbitron",
-});
+// const orbitron = Orbitron({
+//   subsets: ["latin"],
+//   variable: "--font-orbitron",
+// });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "D3pass",
@@ -42,8 +42,6 @@ export const metadata: Metadata = {
   keywords: ["D3pass", "Next.js", "PWA"],
   authors: [{ name: "D3pass", url: "https://d3pass.com" }],
   creator: "D3pass",
-  viewport:
-    "minimum-scale=1.0, initial-scale=1.0, width=device-width, shrink-to-fit=no, viewport-fit=cover",
   icons: [
     {
       rel: "apple-touch-icon",
@@ -54,6 +52,14 @@ export const metadata: Metadata = {
       url: "icons/0ass-512.png",
     },
   ],
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+  minimumScale: 1.0,
+  maximumScale: 1.0,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -94,7 +100,7 @@ export default function RootLayout({
     >
       <html
         lang="en"
-        className={`${sairaStencil.variable} ${inter.variable} ${orbitron.variable}`}
+        // className={`${sairaStencil.variable} ${inter.variable} ${orbitron.variable}`}
       >
         <head>
           <meta name="theme-color" content="#000000" />
@@ -107,7 +113,7 @@ export default function RootLayout({
           <link rel="icon" href="/icons/0ass-512.png" />
         </head>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <ClerkLoading>
             <LoadingScreen />
