@@ -15,6 +15,7 @@ export default withPWA({
   ...nextConfig,
   pwa: {
     dest: "public",
+    swDest: "sw.js", // ✅ optional (default is 'sw.js')
     register: true,
     skipWaiting: true,
     buildExcludes: [/middleware-manifest\.json$/],
