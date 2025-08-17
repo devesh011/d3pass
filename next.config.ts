@@ -4,7 +4,6 @@ import withPWAInit from "next-pwa";
 // configure PWA
 const withPWA = withPWAInit({
   dest: "public",
-  sw: "sw.js", // ✅ use "sw", not "swDest"
   register: true,
   skipWaiting: true,
   buildExcludes: [/middleware-manifest\.json$/],
