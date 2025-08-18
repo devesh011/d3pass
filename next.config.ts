@@ -9,11 +9,12 @@ const withPWA = withPWAInit({
   disable: process.env.NODE_ENV === "development",
 });
 
-// ✅ export inline, do NOT pass a separate variable
-export default withPWA({
+const nextConfig: NextConfig = {
   distDir: "build",
   reactStrictMode: true,
   compiler: {
     removeConsole: process.env.NODE_ENV !== "development",
   },
-} satisfies NextConfig);
+};
+
+export default withPWA(nextConfig);
