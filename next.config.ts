@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 import withPWAInit from "next-pwa";
 
-// configure PWA
 const withPWA = withPWAInit({
   dest: "public",
   register: true,
@@ -10,13 +9,11 @@ const withPWA = withPWAInit({
   disable: process.env.NODE_ENV === "development",
 });
 
-const nextConfig: NextConfig = {
+// ✅ export inline, do NOT pass a separate variable
+export default withPWA({
   distDir: "build",
   reactStrictMode: true,
   compiler: {
     removeConsole: process.env.NODE_ENV !== "development",
   },
-};
-
-// ✅ call wrapper ONCE
-export default withPWA(nextConfig);
+} satisfies NextConfig);
