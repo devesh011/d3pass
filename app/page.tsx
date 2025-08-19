@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
-import { SignInButton, SignedOut } from "@clerk/nextjs";
+import { SignedOut } from "@clerk/nextjs";
+import Link from "next/link";
 
 const taglines = [
   "Zero-knowledge. Full control.",
@@ -120,7 +121,7 @@ export default function Home() {
             {/* Typing animation tagline */}
             <RotatingTagline />
             <SignedOut>
-              <SignInButton mode="modal">
+              <Link href="/sign-in">
                 <motion.button
                   whileHover={{
                     scale: 1.06,
@@ -135,7 +136,7 @@ export default function Home() {
                     Login
                   </span>
                 </motion.button>
-              </SignInButton>
+              </Link>
             </SignedOut>
           </div>
         </div>

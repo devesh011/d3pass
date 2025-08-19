@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -65,6 +71,7 @@ export default function Header() {
             </span>
           </Link>
 
+          {/* Desktop nav */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link
               href="/"
@@ -85,9 +92,11 @@ export default function Header() {
               Generator
             </Link>
           </nav>
+
+          {/* Desktop auth */}
           <div className="hidden md:flex items-center space-x-4">
             <SignedOut>
-              <SignUpButton mode="modal">
+              <SignUpButton mode="redirect">
                 <button className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-500 hover:to-purple-500 transition">
                   Sign Up
                 </button>
@@ -97,15 +106,15 @@ export default function Header() {
               <div className="flex items-center space-x-2">
                 <UserButton
                   appearance={{
-                    elements: {
-                      userButtonAvatarBox: "ring-2 ring-purple-500",
-                    },
+                    elements: { userButtonAvatarBox: "ring-2 ring-purple-500" },
                   }}
                   afterSignOutUrl="/"
                 />
               </div>
             </SignedIn>
           </div>
+
+          {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden w-8 h-8 flex items-center justify-center text-gray-300 hover:text-white transition-colors cursor-pointer"
@@ -114,6 +123,7 @@ export default function Header() {
           </button>
         </div>
 
+        {/* Mobile dropdown */}
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-white/10">
             <div className="flex flex-col items-center space-y-4">
@@ -135,25 +145,30 @@ export default function Header() {
               >
                 Generator
               </Link>
-              <div className="pt-4 border-t border-white/10">
+
+              {/* Mobile auth */}
+              <div className="pt-4 border-t border-white/10 flex flex-col items-center space-y-3">
                 <SignedOut>
+                  <SignInButton mode="modal">
+                    <button className="w-full px-4 py-2 text-sm font-medium text-white border border-white/20 rounded-lg hover:bg-white/10 transition">
+                      Login
+                    </button>
+                  </SignInButton>
                   <SignUpButton mode="modal">
-                    <button className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-500 hover:to-purple-500 transition">
+                    <button className="w-full px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-500 hover:to-purple-500 transition">
                       Sign Up
                     </button>
                   </SignUpButton>
                 </SignedOut>
                 <SignedIn>
-                  <div className="flex items-center space-x-2">
-                    <UserButton
-                      appearance={{
-                        elements: {
-                          userButtonAvatarBox: "ring-2 ring-purple-500",
-                        },
-                      }}
-                      afterSignOutUrl="/"
-                    />
-                  </div>
+                  <UserButton
+                    appearance={{
+                      elements: {
+                        userButtonAvatarBox: "ring-2 ring-purple-500",
+                      },
+                    }}
+                    afterSignOutUrl="/"
+                  />
                 </SignedIn>
               </div>
             </div>
